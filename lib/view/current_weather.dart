@@ -1,18 +1,20 @@
 import 'package:flutter/widgets.dart';
 import 'package:weather/model/weather_model.dart';
 
+import '../model/watherdata2/watherdata2.dart';
+
 class CurrentWeather extends StatelessWidget {
-  final WeatherDataCurrent weatherDataCurrent;
+  final Watherdata2? weatherDataCurrent;
 
   const CurrentWeather({
-    Key? key,
+    super.key,
     required this.weatherDataCurrent,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('${weatherDataCurrent.current.speed}'),
+      child: Text('${weatherDataCurrent?.wind?.speed ?? ""}'),
     );
   }
 }

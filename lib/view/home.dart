@@ -27,15 +27,14 @@ class _HomeState extends State<Home> {
               : ListView(
                   scrollDirection: Axis.vertical,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    HeaderWidget(),
+                    const HeaderWidget(),
 
                     //current temp
                     CurrentWeather(
-                      weatherDataCurrent:
-                          globalController.getWeatherData().getCurrentWeather(),
+                      weatherDataCurrent: globalController.getWeatherData(),
                     ),
                   ],
                 ),

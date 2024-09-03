@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:weather/api/fetch_weather.dart';
 import 'package:weather/model/weather_data.dart';
 
+import '../model/watherdata2/watherdata2.dart';
+
 class GlobalController extends GetxController {
   //values
   final RxBool _isLoading = true.obs;
@@ -13,9 +15,9 @@ class GlobalController extends GetxController {
   RxBool checkLoading() => _isLoading;
   RxDouble getLattitude() => _lattitude;
   RxDouble getLongitude() => _longitude;
-  final weatherData = WeatherData().obs;
+  final weatherData = Watherdata2().obs;
 
-  getWeatherData() {
+  Watherdata2? getWeatherData() {
     return weatherData.value;
   }
 
