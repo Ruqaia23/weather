@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:weather/api/api_key.dart';
+import 'package:weather/model/watherdata2/watherdata2.dart';
 import 'package:weather/model/weather_data.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/model/weather_model.dart';
-
-import '../model/watherdata2/watherdata2.dart';
 
 class FetchWeatherApi {
   Future<Watherdata2> processDate(double lat, double lon) async {
@@ -12,14 +11,15 @@ class FetchWeatherApi {
     try {
       var response = await http.get(Uri.parse(url));
       print(response.body);
+
       // تحقق من أن الاستجابة ناجحة
       if (response.statusCode == 200) {
         var jsonString = jsonDecode(response.body);
-        return Watherdata2.fromJson(jsonString);
         // WeatherData weatherData =
         //     WeatherData(WeatherDataCurrent.fromJson(jsonString));
+        return Watherdata2.fromJson(jsonString);
 
-        // return weatherData;
+        //  return weatherData;
       } else {
         // التعامل مع الحالات التي تكون فيها الاستجابة غير ناجحة
         throw Exception('Failed to load weather data: ${response.statusCode}');

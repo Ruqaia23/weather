@@ -64,6 +64,8 @@ class Watherdata2 {
         cod: json['cod'] as int?,
       );
 
+  get current => null;
+
   Map<String, dynamic> toJson() => {
         'coord': coord?.toJson(),
         'weather': weather?.map((e) => e.toJson()).toList(),

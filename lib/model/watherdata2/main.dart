@@ -1,5 +1,5 @@
 class Main {
-  double? temp;
+  int? temp;
   double? feelsLike;
   double? tempMin;
   double? tempMax;
@@ -20,7 +20,7 @@ class Main {
   });
 
   factory Main.fromJson(Map<String, dynamic> json) => Main(
-        temp: (json['temp'] as num?)?.toDouble(),
+        temp: (json['temp'] as num?)?.toInt(),
         feelsLike: (json['feels_like'] as num?)?.toDouble(),
         tempMin: (json['temp_min'] as num?)?.toDouble(),
         tempMax: (json['temp_max'] as num?)?.toDouble(),
