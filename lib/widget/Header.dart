@@ -3,7 +3,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/controller/global_controller.dart';
-import 'package:weather/model/weather_model.dart';
 
 class HeaderWidget extends StatefulWidget {
   const HeaderWidget({super.key});

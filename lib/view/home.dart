@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather/controller/global_controller.dart';
+import 'package:weather/model/weather_hourly.dart';
 import 'package:weather/view/current_weather.dart';
 import 'package:weather/widget/Header.dart';
+import 'package:weather/widget/hourly_weather.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -35,8 +37,15 @@ class _HomeState extends State<Home> {
 
                       //current temp
                       CurrentWeather(
-                        weatherDataCurrent: globalController.getWeatherData(),
+                        weatherDataCurrent: globalController
+                            .getWeatherData()
+                            .getCurrentWeather(),
                       ),
+                      HourlyData(
+                        weatherDataHourly: globalController
+                            .getWeatherData()
+                            .getHourlyWeather(),
+                      )
                     ],
                   ),
                 ),

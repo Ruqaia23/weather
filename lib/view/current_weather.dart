@@ -1,14 +1,8 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:weather/model/watherdata2/weather.dart';
-import 'package:weather/model/weather_model.dart';
-
-import '../model/watherdata2/watherdata2.dart';
+import 'package:weather/model/weather_current.dart';
 
 class CurrentWeather extends StatelessWidget {
-  final Watherdata2? weatherDataCurrent;
+  final WeatherDataCurrent? weatherDataCurrent;
 
   const CurrentWeather({
     super.key,
@@ -20,22 +14,108 @@ class CurrentWeather extends StatelessWidget {
     return Column(
       children: [
         tempeathureAreaWidget(weatherDataCurrent),
-        currentWeatherMoreDetailsWidget(),
+        SizedBox(
+          height: 20,
+        ),
+        currentWeatherMoreDetailsWidget(weatherDataCurrent),
       ],
     );
   }
 }
 
-currentWeatherMoreDetailsWidget() {
-  return Container();
+currentWeatherMoreDetailsWidget(weatherDataCurrent) {
+  return Column(children: [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(153, 230, 227, 227),
+              borderRadius: BorderRadius.circular(15)),
+          child: Image.asset(
+            'assets/icons/windsspeed.png',
+            color: const Color.fromARGB(255, 15, 104, 177),
+          ),
+        ),
+        Container(
+          height: 60,
+          width: 60,
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(153, 230, 227, 227),
+              borderRadius: BorderRadius.circular(15)),
+          child: Image.asset(
+            'assets/icons/cloud.png',
+            color: const Color.fromARGB(255, 15, 104, 177),
+          ),
+        ),
+        Container(
+          height: 60,
+          width: 60,
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(153, 230, 227, 227),
+              borderRadius: BorderRadius.circular(15)),
+          child: Image.asset(
+            'assets/icons/humidity.png',
+            color: const Color.fromARGB(255, 15, 104, 177),
+          ),
+        ),
+      ],
+    ),
+    SizedBox(
+      height: 10,
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        SizedBox(
+          height: 20,
+          width: 60,
+          child: Text(
+            '${weatherDataCurrent.current.windSpeed}Km/h',
+            style: TextStyle(
+              fontSize: 12,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(
+          height: 20,
+          width: 60,
+          child: Text(
+            '${weatherDataCurrent.current.clouds}%',
+            style: TextStyle(
+              fontSize: 12,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(
+          height: 20,
+          width: 60,
+          child: Text(
+            '${weatherDataCurrent.current.humidity}%',
+            style: TextStyle(
+              fontSize: 12,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    ),
+  ]);
 }
 
-Widget tempeathureAreaWidget(dynamic weatherDataCurrent) {
+Widget tempeathureAreaWidget(weatherDataCurrent) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       Image.asset(
-        'assets/icons/50d.png',
+        'assets/icons/02.png',
         height: 80,
         width: 80,
       ),
@@ -48,7 +128,14 @@ Widget tempeathureAreaWidget(dynamic weatherDataCurrent) {
         text: TextSpan(
           children: [
             TextSpan(
-                text: '${weatherDataCurrent.weather[0].description}°',
+                text: '${weatherDataCurrent.current.temp.toInt()}°',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 50,
+                )),
+            TextSpan(
+                text: '${weatherDataCurrent.current.weather[0].description}',
                 style: TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.w400,
