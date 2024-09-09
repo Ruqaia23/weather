@@ -13,8 +13,8 @@ class FetchWeatherAPI {
     var response = await http.get(Uri.parse(apiURL(lat, lon)));
     var jsonString = jsonDecode(response.body);
     weatherData = WeatherData(
-      WeatherDataCurrent.fromJson(jsonString),
       WeatherDataHourly.fromJson(jsonString),
+      WeatherDataCurrent.fromJson(jsonString),
     );
 
     return weatherData!;

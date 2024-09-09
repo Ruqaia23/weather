@@ -1,7 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:weather/api/fetch_weather.dart';
-import 'package:weather/model/weather/current.dart';
 import 'package:weather/model/weather_data.dart';
 
 class GlobalController extends GetxController {
@@ -9,6 +8,7 @@ class GlobalController extends GetxController {
   final RxBool _isLoading = true.obs;
   final RxDouble _lattitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
+  final RxInt _currentIndex = 0.obs;
 
 //instance to be called
   RxBool checkLoading() => _isLoading;
@@ -24,6 +24,8 @@ class GlobalController extends GetxController {
   void onInit() {
     if (_isLoading.isTrue) {
       getLocation();
+    } else {
+      getIndex();
     }
     super.onInit();
   }
@@ -65,5 +67,9 @@ class GlobalController extends GetxController {
         _isLoading.value = false;
       });
     });
+  }
+
+  RxInt getIndex() {
+    return _currentIndex;
   }
 }

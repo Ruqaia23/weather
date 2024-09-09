@@ -1,15 +1,22 @@
 class WeatherDataHourly {
-  final Hourly hourly;
+  List<Hourly> hourly;
   WeatherDataHourly({required this.hourly});
 
   factory WeatherDataHourly.fromJson(Map<String, dynamic> json) =>
-      WeatherDataHourly(hourly: Hourly.fromJson(json['current']));
+      WeatherDataHourly(
+        hourly: (json['hourly'] as List<dynamic>)
+            .map((e) => Hourly.fromJson(e))
+            .toList(),
+      );
+
+  // Map<String, dynamic> toJson() => {
+  //       'hourly': hourly.map((e) => e.toJson()).toList(),
+  //     };
 }
 
 class Hourly {
   int? dt;
   int? temp;
-
   List<Weather>? weather;
 
   Hourly({
@@ -51,7 +58,7 @@ class Weather {
   Map<String, dynamic> toJson() => {
         'id': id,
         'main': main,
-        'descripttion': description,
+        'description': description,
         'icon': icon,
       };
 }

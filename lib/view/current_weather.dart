@@ -115,7 +115,7 @@ Widget tempeathureAreaWidget(weatherDataCurrent) {
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       Image.asset(
-        'assets/icons/02.png',
+        'assets/icons/clearSky.png',
         height: 80,
         width: 80,
       ),
