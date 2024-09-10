@@ -13,7 +13,7 @@ class CurrentWeather extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        tempeathureAreaWidget(weatherDataCurrent),
+        tempeathureAreaWidget(weatherDataCurrent, 'clearSky'),
         SizedBox(
           height: 20,
         ),
@@ -35,10 +35,8 @@ currentWeatherMoreDetailsWidget(weatherDataCurrent) {
           decoration: BoxDecoration(
               color: const Color.fromARGB(153, 230, 227, 227),
               borderRadius: BorderRadius.circular(15)),
-          child: Image.asset(
-            'assets/icons/windsspeed.png',
-            color: const Color.fromARGB(255, 15, 104, 177),
-          ),
+          child: Image.asset('assets/icons/windsspeed.png',
+              color: const Color.fromRGBO(83, 171, 223, 1)),
         ),
         Container(
           height: 60,
@@ -47,10 +45,8 @@ currentWeatherMoreDetailsWidget(weatherDataCurrent) {
           decoration: BoxDecoration(
               color: const Color.fromARGB(153, 230, 227, 227),
               borderRadius: BorderRadius.circular(15)),
-          child: Image.asset(
-            'assets/icons/cloud.png',
-            color: const Color.fromARGB(255, 15, 104, 177),
-          ),
+          child: Image.asset('assets/icons/03d.png',
+              color: const Color.fromRGBO(83, 171, 223, 1)),
         ),
         Container(
           height: 60,
@@ -59,10 +55,8 @@ currentWeatherMoreDetailsWidget(weatherDataCurrent) {
           decoration: BoxDecoration(
               color: const Color.fromARGB(153, 230, 227, 227),
               borderRadius: BorderRadius.circular(15)),
-          child: Image.asset(
-            'assets/icons/humidity.png',
-            color: const Color.fromARGB(255, 15, 104, 177),
-          ),
+          child: Image.asset('assets/icons/humidity.png',
+              color: const Color.fromRGBO(83, 171, 223, 1)),
         ),
       ],
     ),
@@ -110,20 +104,22 @@ currentWeatherMoreDetailsWidget(weatherDataCurrent) {
   ]);
 }
 
-Widget tempeathureAreaWidget(weatherDataCurrent) {
+Widget tempeathureAreaWidget(weatherDataCurrent, String weatherIcon) {
+  //final String weatherIcon;
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-      Image.asset(
-        'assets/icons/clearSky.png',
-        height: 80,
-        width: 80,
-      ),
       Container(
-        height: 50,
-        width: 1,
-        color: Colors.grey,
+        //margin: EdgeInsets.all(5),
+        child: Image.asset(
+          'assets/icons/$weatherIcon.png',
+          height: 80,
+          width: 80,
+        ),
       ),
+      Container(height: 50, width: 1, color: Colors.black
+          //Colors.grey,
+          ),
       RichText(
         text: TextSpan(
           children: [

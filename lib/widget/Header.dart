@@ -46,7 +46,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
           child: Text(
             city,
             // weatherModle.name!,
-            style: TextStyle(fontSize: 35, height: 2),
+            style:
+                TextStyle(fontSize: 35, height: 2, fontWeight: FontWeight.bold),
           ),
         ),
         Container(

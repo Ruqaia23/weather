@@ -11,6 +11,8 @@ class Current {
   int? humidity;
   int? clouds;
   double? windSpeed;
+  double? feelsLike;
+  double? uvi;
 
   List<Weather>? weather;
 
@@ -20,6 +22,8 @@ class Current {
     this.clouds,
     this.windSpeed,
     this.weather,
+    this.feelsLike,
+    this.uvi,
   });
 
   factory Current.fromJson(Map<String, dynamic> json) => Current(
@@ -27,6 +31,8 @@ class Current {
         humidity: json['humidity'] as int?,
         clouds: json['clouds'] as int?,
         windSpeed: (json['wind_speed'] as num?)?.toDouble(),
+        feelsLike: (json['feelsLike'] as num?)?.toDouble(),
+        uvi: (json['uvi'] as num?)?.toDouble(),
         weather: (json['weather'] as List<dynamic>?)
             ?.map((e) => Weather.fromJson(e as Map<String, dynamic>))
             .toList(),
@@ -37,6 +43,8 @@ class Current {
         'humidity': humidity,
         'clouds': clouds,
         'wind_speed': windSpeed,
+        'feelsLike': feelsLike,
+        'uvi': uvi,
         'weather': weather?.map((e) => e.toJson()).toList(),
       };
 }

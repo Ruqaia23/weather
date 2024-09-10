@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:weather/controller/global_controller.dart';
 
+import 'package:weather/controller/global_controller.dart';
 import 'package:weather/model/weather_hourly.dart';
 
 class HourlyData extends StatelessWidget {
   final WeatherDataHourly? weatherDataHourly;
 
-  HourlyData({super.key, this.weatherDataHourly});
+  HourlyData({
+    Key? key,
+    this.weatherDataHourly,
+  }) : super(key: key);
 
   RxInt cardIndex = GlobalController().getIndex();
 
@@ -21,7 +24,7 @@ class HourlyData extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: Text(
             'Today',
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         hourlyList(),
@@ -46,24 +49,26 @@ class HourlyData extends StatelessWidget {
               },
               child: Container(
                 width: 90,
-                margin: EdgeInsets.only(left: 20, right: 4),
+                margin: const EdgeInsets.only(left: 20, right: 4),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         offset: Offset(0.5, 0),
                         blurRadius: 30,
                         spreadRadius: 1,
-                        color: const Color.fromARGB(153, 230, 227, 227),
+                        color: Color.fromARGB(153, 230, 227, 227),
                       ),
                     ],
                     gradient: cardIndex.value == index
-                        ? LinearGradient(colors: [
+                        ? const LinearGradient(colors: [
                             Color.fromARGB(255, 128, 193, 255),
                             Color.fromARGB(255, 81, 166, 246),
                           ])
                         : null),
                 child: HourlyDetails(
+                  index: index,
+                  cardIndex: cardIndex.toInt(),
                   temp: weatherDataHourly!.hourly[index].temp!,
                   timeStamp: weatherDataHourly!.hourly[index].dt!,
                   weatherIcon:
@@ -78,6 +83,8 @@ class HourlyData extends StatelessWidget {
 
 class HourlyDetails extends StatelessWidget {
   final int temp;
+  int index;
+  int cardIndex;
   final int timeStamp;
   final String weatherIcon;
 
@@ -88,11 +95,13 @@ class HourlyDetails extends StatelessWidget {
   }
 
   HourlyDetails({
-    Key? key,
+    super.key,
+    required this.index,
+    required this.cardIndex,
     required this.temp,
     required this.timeStamp,
     required this.weatherIcon,
-  }) : super(key: key);
+  });
 
   RxInt cardIndix = GlobalController().getIndex();
 
@@ -103,10 +112,17 @@ class HourlyDetails extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: 10),
-          child: Text(getTime(timeStamp)),
+          child: Text(
+            getTime(timeStamp),
+            style: TextStyle(
+              color: cardIndex == index
+                  ? Colors.black
+                  : const Color.fromRGBO(83, 171, 223, 1),
+            ),
+          ),
         ),
         Container(
-          margin: EdgeInsets.all(5),
+          margin: const EdgeInsets.all(5),
           child: Image.asset(
             'assets/icons/$weatherIcon.png',
             height: 40,
@@ -114,8 +130,15 @@ class HourlyDetails extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: 10),
-          child: Text('$temp°'),
+          margin: const EdgeInsets.only(bottom: 10),
+          child: Text(
+            '$temp°',
+            style: TextStyle(
+              color: cardIndex == index
+                  ? Colors.black
+                  : const Color.fromRGBO(83, 171, 223, 1),
+            ),
+          ),
         )
       ],
     );
